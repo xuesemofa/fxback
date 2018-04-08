@@ -25,7 +25,7 @@
                   <Insets top="1.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#grzl" prefHeight="23.0" prefWidth="96.0" styleClass="menus" text="个人资料">
+            <Button disable="true" mnemonicParsing="false" onAction="#grzl" prefHeight="23.0" prefWidth="96.0" styleClass="menus" text="个人资料">
                <VBox.margin>
                   <Insets top="1.0" />
                </VBox.margin>

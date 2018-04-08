@@ -5,12 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.cus.fx.api.AccountInterface;
-import org.cus.fx.api.model.AccountModel;
-import org.cus.fx.api.util.ApiUtil;
+import org.cus.fx.account.model.AccountModel;
+import org.cus.fx.account.service.AccountService;
+import org.cus.fx.account.service.AccountServiceImpl;
 import org.cus.fx.home.controller.HomeController;
 import org.cus.fx.util.Base64Util;
-import org.cus.fx.util.ResponseResult;
+
+import java.util.List;
 
 /**
  * @author ld
@@ -42,13 +43,11 @@ public class IndexController {
         if (account == null || password == null) {
             error.setText("账户密码不能为空");
         } else {
-            ApiUtil apiUtil = new ApiUtil();
-            AccountInterface anInterface = apiUtil.getAccountInterface("");
-            ResponseResult<AccountModel> result = anInterface.getAccount(account);
-            if (result.isSuccess()) {
-                String s = Base64Util.decode(result.getData().getPassword());
-                String s1 = Base64Util.encode(password);
-                if (s.equals(s1)) {
+            AccountService accountService = new AccountServiceImpl();
+            List<AccountModel> byAccount = accountService.getByAccount(account);
+            if (byAccount.size() > 0) {
+                String s = Base64Util.decode(byAccount.get(0).getPassword());
+                if (s.equals(password)) {
                     try {
                         HomeController homeController = new HomeController();
                         homeController.init();
