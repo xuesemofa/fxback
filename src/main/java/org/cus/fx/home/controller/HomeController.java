@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.cus.fx.home.button.GrzlButton;
+import org.cus.fx.home.button.SpglButton;
 import org.cus.fx.util.AlertUtil;
 
 /**
@@ -49,5 +50,10 @@ public class HomeController {
     @FXML
     private void grzl() {
         GrzlButton.grzl(bodys);
+    }
+
+    @FXML
+    private void spgl() {
+        SpglButton.spgl(bodys);
     }
 }
